@@ -44,7 +44,21 @@ class CellPillar:
             for j in range(i + 1, self.__number_of_cells):
                 self.__cell_pillar[j].set_top(self.__cell_pillar[j].get_top() + difference)
                 self.__cell_pillar[j].set_bottom(self.__cell_pillar[j].get_bottom() + difference)
-    
+
+    #вставка клетки в столб
+    def insert_cell(self, size, position):
+        if position >= 0 and position <= self.__number_of_cells:
+            z0 = self.get_cell(position - 1).get_top() if position != 0 else 0
+            self.__cell_pillar.insert(position, c.Cell(z0,z0 + size))
+            self.__number_of_cells += 1
+            for i in range(position + 1, self.__number_of_cells):
+                old_z0 = self.get_cell(i).get_bottom()
+                old_z1 = self.get_cell(i).get_top()
+                self.get_cell(i).set_bottom(old_z0 + size)
+                self.get_cell(i).set_top(old_z1 + size)
+        else:
+            print('wrong position while inserting')
+
     #информация о клеточном столбе
     def info(self):
         print('\ncell type=', self.__type)
