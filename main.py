@@ -1,8 +1,9 @@
 import cell as c
 import cell_pillar as cp
+import root as rt
 
-new_cell = c.Cell(0, 1)
-n = cp.CellPillar('main',2)
-print(n.info())
-n.insert_cell(0.5, 4)
-print(n.info())
+MainRoot = rt.Root(4, list('abcd'))
+#print(MainRoot.info())
+cells = [[0,1],[1,2],[2,2.5]]
+MainRoot.set_pillar_cells(2, cells)
+print(MainRoot.info())

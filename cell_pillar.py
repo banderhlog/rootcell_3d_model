@@ -4,7 +4,7 @@ import cell as c
 class CellPillar:
 
     #конструктор - представляет из себя массив клеток
-    def __init__(self, type, number_of_cells):
+    def __init__(self, type, number_of_cells = 1):
         if number_of_cells > 0:
             self.__type = type
             self.__number_of_cells = number_of_cells
@@ -22,6 +22,11 @@ class CellPillar:
     #возвращет количество клеток в клеточном столбе
     def get_number_of_cells(self):
         return self.__number_of_cells
+
+    #устанавливает новое количество клеток в клеточном столбе
+    def set_number_of_cells(self, new_num):
+        if new_num > 0:
+            self.__number_of_cells = new_num
 
     #возвращает массив клеток
     def get_cell_pillar(self):
