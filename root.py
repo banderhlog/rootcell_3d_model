@@ -11,7 +11,6 @@ class Root:
             self.__pillar_type = pillar_type
             self.__pillars = []
             for i in range(num_of_pillars):
-                print(i)
                 pillar = cp.CellPillar(self.__pillar_type[i])
                 self.__pillars.append(pillar)
         else:
@@ -21,9 +20,16 @@ class Root:
     def get_pillars(self):
         return self.__pillars
 
+    #возвращает i-тый клеточный столб
+    def get_pillar(self,i):
+        return self.__pillars[i]
+
+    #возвращает j-тую клетку i-того столба
+    def get_cell(self, i, j):
+        return self.__pillars[i].get_cell(j)
+
     #устанавливает параметры клеточного столба
-    def set_pillar_cells(self, pil_num, cells):
-        i = pil_num - 1
+    def set_pillar_cells(self, i, cells):
         self.get_pillars()[i].get_cell_pillar().clear() #удаляем все элементы
         self.get_pillars()[i].set_number_of_cells(len(cells))
         for j in range(len(cells)):
@@ -38,3 +44,16 @@ class Root:
     def info(self):
         for i in self.get_pillars():
             i.info()
+
+    #возвращает массив значений, разбивающий корень
+    #на элементарный разрезы
+    def elementary_fragmentation(self):
+        res = []
+        for i in self.get_pillars():
+            if i.get_number_of_cells() != 0:
+                res.append(i.cell_to_list())
+        b = []
+        for i in range(len(res)):
+            b += list(res[i])
+        b = sorted(list(set(b)))
+        return b
