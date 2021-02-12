@@ -1,6 +1,20 @@
 #класс столб клеток
 import cell as c
 
+def list_to_cell(a):
+    if len(a) > 0:
+        a = sorted(a)
+        res = []
+        j = 0
+        for i in range(1, len(a)):
+            loc = []
+            loc.append(a[i - 1])
+            loc.append(a[i])
+            res.append(loc)
+        return res
+    else:
+        'Empty array'
+
 class CellPillar:
 
     #конструктор - представляет из себя массив клеток
@@ -13,7 +27,7 @@ class CellPillar:
                 local_cell = c.Cell(i, i + 1)
                 self.__cell_pillar.append(local_cell)
         else:
-            print('Zero number of cells\n')
+            print('Zero number of cells')
 
     #возвращает тип клеточного столба
     def get_type(self):
@@ -62,7 +76,7 @@ class CellPillar:
                 self.get_cell(i).set_bottom(old_z0 + size)
                 self.get_cell(i).set_top(old_z1 + size)
         else:
-            print('wrong position while inserting')
+            print('Wrong position while inserting')
 
     #информация о клеточном столбе
     def info(self):
@@ -72,3 +86,10 @@ class CellPillar:
             print(i)
             print(self.__cell_pillar[i].info())
             print('|–––––––––––––––––|')
+
+    #преобразование клеточного столба в массив
+    def cell_to_list(self):
+        res = [0]
+        for i in self.get_cell_pillar():
+            res.append(i.get_top())
+        return res
