@@ -17,6 +17,7 @@ del x
 del y
 print(centers.tail())
 
+#возвращает словарь вида {сосед: длина границы}
 def neighbours(column):
     if 0 <= column <= centers.shape[0] - 1:
         n, m = [], []
@@ -25,7 +26,5 @@ def neighbours(column):
             if d != 0 and i != 0 :
                 n.append(i)
                 m.append(d)
-        print(n)
-        print(m)
         res = dict(zip(n,m))
         return res
