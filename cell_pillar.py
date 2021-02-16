@@ -1,5 +1,6 @@
-#класс столб клеток
 import cell as c
+global eps
+eps = 0.0001
 
 def list_to_cell(a):
     if len(a) > 0:
@@ -15,6 +16,7 @@ def list_to_cell(a):
     else:
         'Empty array'
 
+#класс столб клеток
 class CellPillar:
 
     #конструктор - представляет из себя массив клеток
@@ -49,6 +51,15 @@ class CellPillar:
     #возвращает i-тую клетку из столба, считая снизу
     def get_cell(self, i):
         return self.__cell_pillar[i]
+
+    #возвращает индекс клетки по нижней точке
+    def get_cell_wh(self, h1):
+        h2 = h1 + eps
+        for i in range(self.__number_of_cells):
+            loc_cell = self.get_cell(i)
+            if h1 >= loc_cell.get_bottom() and h2 <= loc_cell.get_top():
+                return i
+
 
     #устанавливает высоту i-той клетки и обновляет высоту клеток выше
     def set_new_top(self, i, new_height):
