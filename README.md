@@ -3,3 +3,5 @@
 Cell Pillar - класс, состоящий из массива Cell'ов.
 Root - класс, состоязий из массива Cell Pillar'ов.
 Type - лежат функции взаимодействия клеточных столбов.
+Тех диплома:
+https://www.overleaf.com/read/wjbpqmnxckjg
