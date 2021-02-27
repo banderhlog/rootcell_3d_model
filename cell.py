@@ -6,6 +6,7 @@ class Cell:
         if top > bottom:
             self.__top = top
             self.__bottom = bottom
+            self.__c = [0]*5
         else:
             print('Wrong values \n')
 
@@ -35,3 +36,12 @@ class Cell:
     def info(self):
         print('bottom= ', self.__bottom)
         print('top=', self.__top)
+
+    #доступ к веществам клетки
+    def get_c(self):
+        return self.__c
+
+    #установить новые вещества клетки
+    def set_c(self, new_c):
+        del self.__c
+        self.__c = new_c
