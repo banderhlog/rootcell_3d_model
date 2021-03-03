@@ -59,6 +59,7 @@ class CellPillar:
             loc_cell = self.get_cell(i)
             if h1 >= loc_cell.get_bottom() and h2 <= loc_cell.get_top():
                 return i
+        return -1
 
 
     #устанавливает высоту i-той клетки и обновляет высоту клеток выше
