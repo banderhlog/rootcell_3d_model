@@ -41,6 +41,10 @@ class Cell:
     def get_c(self):
         return self.__c
 
+    #доступ к i-ому веществу клетки
+    def get_ci(self, i):
+        return self.__c[i]
+
     #установить новые вещества клетки
     def set_c(self, new_c):
         del self.__c
