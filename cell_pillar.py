@@ -1,12 +1,12 @@
 import cell as c
 global eps
-eps = 0.0001
+eps: float = 0.0001
+
 
 def list_to_cell(a):
     if len(a) > 0:
         a = sorted(a)
         res = []
-        j = 0
         for i in range(1, len(a)):
             loc = []
             loc.append(a[i - 1])
@@ -16,11 +16,12 @@ def list_to_cell(a):
     else:
         'Empty array'
 
+
 #класс столб клеток
 class CellPillar:
 
     #конструктор - представляет из себя массив клеток
-    def __init__(self, type, number_of_cells = 1):
+    def __init__(self, type, number_of_cells=1):
         if number_of_cells > 0:
             self.__type = type
             self.__number_of_cells = number_of_cells
@@ -61,15 +62,14 @@ class CellPillar:
                 return i
         return -1
 
-
     #устанавливает высоту i-той клетки и обновляет высоту клеток выше
     def set_new_top(self, i, new_height):
-        if i >= 0 and i < self.__number_of_cells:
+        if 0 <= i < self.__number_of_cells:
             old_bottom = self.__cell_pillar[i].get_bottom()
             old_top = self.__cell_pillar[i].get_top()
             old_height = old_top - old_bottom
             if old_height < 0:
-                print('Impossible height, pillar ',self.__type,'i=', i)
+                print('Impossible height, pillar ', self.__type, 'i=', i)
             difference = new_height - old_height
             self.__cell_pillar[i].set_top(old_top + difference)
             for j in range(i + 1, self.__number_of_cells):
@@ -78,9 +78,9 @@ class CellPillar:
 
     #вставка клетки в столб
     def insert_cell(self, size, position):
-        if position >= 0 and position <= self.__number_of_cells:
+        if 0 <= position <= self.__number_of_cells:
             z0 = self.get_cell(position - 1).get_top() if position != 0 else 0
-            self.__cell_pillar.insert(position, c.Cell(z0,z0 + size))
+            self.__cell_pillar.insert(position, c.Cell(z0, z0 + size))
             self.__number_of_cells += 1
             for i in range(position + 1, self.__number_of_cells):
                 old_z0 = self.get_cell(i).get_bottom()
