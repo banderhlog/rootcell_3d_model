@@ -1,6 +1,6 @@
 import pandas as pd
 
-centers = pd.read_csv('/Users/sanek/Desktop/NSU/cell_3d_model/Centroid_correct.csv', header= None)
+#centers = pd.read_csv('/Users/sanek/Desktop/NSU/cell_3d_model/Centroid_correct.csv', header= None)
 cell_walls = pd.read_csv('/Users/sanek/Desktop/NSU/cell_3d_model/cellwall_length_correct.csv', sep=';', header= None)
 
 '''
@@ -25,6 +25,11 @@ print(centers)
 
 centers = pd.read_csv('/Users/sanek/Desktop/NSU/cell_3d_model/centers.csv', sep=';', index_col=0)
 #new_centers = new_centers.drop('Unnamed: 0', axis=1)
+
+# возвращает тип i-того клеточного столба
+def type_of_column(i):
+    return centers.iloc[i, 3]
+
 #возвращает массив вида (сосед_i: длина границы_i)
 def neighbours(column):
     if 0 <= column <= centers.shape[0] - 1:
@@ -38,6 +43,11 @@ def neighbours(column):
         res = list(zip(n,m))
         return res
 
+# возвращает словарь вида {сосед_i: длина границы_i, коэффициент проницаемости}
+def neighbours_new(column):
+    pass
+
+
 #протестировать
 # возвращает площадь i-того клеточного столба
 def area(i):
@@ -48,7 +58,3 @@ def area(i):
 # возвращает координаты центра i-того клеточного столба
 def center(i):
     return [centers.iloc[i, 0], centers.iloc[i, 1]]
-
-# возвращает тип i-того клеточного столба
-def type_of_column(i):
-    return centers.iloc[i, 3]

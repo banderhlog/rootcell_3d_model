@@ -20,11 +20,14 @@ def draw_root(root: rt.Root):
     # box(pos = vector(0,1.5,0),length = 0.1, height= 1, width= 0.1, color = color.red, opacity = 0.5)
     # box(pos = vector(0,0.5,1), length = 0.1, height= 1, width= 0.1, color = color.green)
 
-    floor = box(pos=vector(0, 0, 0), length=1000, height=0, color=color.white, width=1000)
+    ii = 0
+    floor = box(pos=vector(0, 0, 0), length=1000, height=0, color=color.white, width=1000, opacity= 0.1)
     pillars = root.get_pillars()
 
-    for i in pillars:
+    substances = root.get_substance()
 
+    for i in pillars:
+        jj = 0
         cells = i.get_cell_pillar()
         print(i.info())
         cells_type = i.get_type()
@@ -67,5 +70,17 @@ def draw_root(root: rt.Root):
                 current_height += cell_height / 2
 
             position = vector(x, current_height, y)
-            box(pos=position, length=length, height=cell_height, width=width, color=cell_color, opacity=0.6)
+
+            concentration = substances[ii][jj][0]
+            print('allo',concentration)
+            buffer_color = cell_color
+            if concentration < 0.01:
+                cell_color = color.white
+                concentration = 1
+            else:
+                concentration += 0.3
+            box(pos=position, length=length, height=cell_height, width=width, color=cell_color, opacity=concentration)
             current_height += cell_height / 2
+            cell_color = buffer_color
+            jj += 1
+        ii += 1

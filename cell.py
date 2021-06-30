@@ -8,6 +8,7 @@ class Cell:
             self.__top = top
             self.__bottom = bottom
             self.__c = [0]*3
+            self.__age = 0
 
             for i in range(len(self.__c)):
                 self.__c[i] = random.uniform(0, 1)
